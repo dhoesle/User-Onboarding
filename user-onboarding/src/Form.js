@@ -17,9 +17,9 @@ export default function Form(props) {
                 <h3>User Info</h3>
                 <label>Name
                     <input
-                        value={values.name}
+                        value={values.first_name}
                         onChange={onInputChange}
-                        name='name'
+                        name='first_name'
                         text='text'
                     />
                 </label>
@@ -39,21 +39,24 @@ export default function Form(props) {
                         text='text'
                     />
                 </label>
-                <label>Terms of Service
+            </div>
+            <div className='form-group checkboxes'>
+                <h4>Terms of Service</h4>
+                <label>Agree:
                     <input
                         name='agree'
                         type='checkbox'
                         onChange={onCheckboxChange}
-                        checked={values.agree}
-                    />
+                        checked={values.terms.agree}
+                        />
                 </label>
-            </div>
 
+            </div>
             <div className='form-group submit'>
                 <h2>Add Users</h2>
                 <button disabled={disabled}>submit user</button>
                 <div className='errors'>
-                    <div>{errors.name}</div>
+                    <div>{errors.first_name}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.agree}</div>

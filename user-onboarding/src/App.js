@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Form from './Form'
+import User from './User'
 
 import formSchema from './validation/formSchema'
 
@@ -9,14 +9,16 @@ import axios from 'axios'
 import * as Yup from 'yup'
 
 const initialFormValues = {
-  name: '',
+  first_name: '',
   email: '',
   password: '',
-  agree: false,
+  terms: {
+    agree: false,
+  }
 }
 
 const initialFormErrors = {
-  name: '',
+  first_name: '',
   email: '',
   password: '',
 }
@@ -47,6 +49,7 @@ function App() {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
         setUsers([...users, res.data])
+        console.log("App -> users", users)        
       })
       .catch(err => {
         debugger
@@ -82,21 +85,23 @@ function App() {
 
   const onCheckboxChange = evt => {
     const { name, checked } = evt.target
-    // c) set a new state for the whole form
     setFormValues({
-      ...formValues.hobbies,
+      ...formValues,
+      terms: {
+        ...formValues.terms,
         [name]: checked,
-      })
+      }
+    })
   }
 
   const onSubmit = evt => {
     evt.preventDefault()
 
     const newUser = {
-      name: formValues.name.trim(),
+      first_name: formValues.first_name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      agree: formValues.agree,
+      agree: formValues.terms.agree,
     }
     // 🔥 STEP 9- POST NEW FRIEND USING HELPER
     postNewUser(newUser)
@@ -114,7 +119,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="header">
         <h1>User Onboarding</h1>
       </header>
 
@@ -126,6 +131,14 @@ function App() {
         disabled={disabled}
         errors={formErrors}
       />
+
+      {
+        users.map(user => {
+          return (
+            <User key={user.id} details={user} />
+          )
+        })
+      }
     </div>
   );
 }
