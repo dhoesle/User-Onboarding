@@ -49,7 +49,7 @@ function App() {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
         setUsers([...users, res.data])
-        console.log("App -> users", users)        
+        console.log("App -> users", users)
       })
       .catch(err => {
         debugger
@@ -57,6 +57,7 @@ function App() {
       .finally(() => {
         setFormValues(initialFormValues)
       })
+      
   }
   const onInputChange = evt => {
     const { name, value } = evt.target
@@ -95,8 +96,9 @@ function App() {
   }
 
   const onSubmit = evt => {
+    
     evt.preventDefault()
-
+    
     const newUser = {
       first_name: formValues.first_name.trim(),
       email: formValues.email.trim(),
@@ -106,20 +108,20 @@ function App() {
     // 🔥 STEP 9- POST NEW FRIEND USING HELPER
     postNewUser(newUser)
   }
-
+  
   useEffect(() => {
     getUsers()
   }, [])
-
+  
   useEffect(() => {
     formSchema.isValid(formValues).then(valid => {
       setDisabled(!valid);
     })
   }, [formValues])
-
+  
   return (
     <div className="App">
-      <header className="header">
+      <header className="App-header">
         <h1>User Onboarding</h1>
       </header>
 
@@ -134,6 +136,8 @@ function App() {
 
       {
         users.map(user => {
+          console.log("App ->  users",  users)
+
           return (
             <User key={user.id} details={user} />
           )

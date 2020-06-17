@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +26,38 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.form-container {
+  /* background-color: aquamarine; */
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group-inputs label {
+  /* background-color: lightblue; */
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 30px;
+}
+
+.form-group-checkboxes {
+  /* background-color: gray; */
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 0px;
+}
+
+.form-group-submit button {
+  /* background-color: lightgray; */
+  margin: 30px;
+
 }
 
 @keyframes App-logo-spin {

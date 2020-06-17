@@ -1,4 +1,6 @@
 import React from 'react'
+import './App.css';
+
 
 export default function Form(props) {
     const {
@@ -11,9 +13,9 @@ export default function Form(props) {
     } = props
 
     return (
-        <form lassName='form container' onSubmit={onSubmit}>
+        <form className='form-container' onSubmit={onSubmit}>
 
-            <div className='form-group inputs'>
+            <div className='form-group-inputs'>
                 <h3>User Info</h3>
                 <label>Name
                     <input
@@ -40,7 +42,7 @@ export default function Form(props) {
                     />
                 </label>
             </div>
-            <div className='form-group checkboxes'>
+            <div className='form-group-checkboxes'>
                 <h4>Terms of Service</h4>
                 <label>Agree:
                     <input
@@ -52,8 +54,7 @@ export default function Form(props) {
                 </label>
 
             </div>
-            <div className='form-group submit'>
-                <h2>Add Users</h2>
+            <div className='form-group-submit'>
                 <button disabled={disabled}>submit user</button>
                 <div className='errors'>
                     <div>{errors.first_name}</div>
